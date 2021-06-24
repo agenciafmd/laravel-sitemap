@@ -1,0 +1,33 @@
+{
+    "name": "agenciafmd/laravel-sitemap",
+    "description": "Gerador de Sitemap",
+    "homepage": "https://github.com/agenciafmd/laravel-sitemap",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Carlos Seiji",
+            "email": "carlos@fmd.ag",
+            "homepage": "https://fmd.ag/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "laravel/framework": "6.*|7.*|8.*",
+        "spatie/laravel-sitemap": "^5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Agenciafmd\\Sitemap\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Agenciafmd\\Sitemap\\Providers\\SitemapServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
