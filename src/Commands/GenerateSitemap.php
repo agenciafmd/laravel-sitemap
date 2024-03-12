@@ -15,6 +15,16 @@ class GenerateSitemap extends Command
     {
         dispatch(function () {
             SitemapGenerator::create(config('app.url'))
+                ->shouldCrawl(function($url){
+                    if($url->getPath() === ''){
+                        return false;
+                    }
+
+                    if($url->getQuery()){
+                        return false;
+                    }
+                    return true;
+                })
                 ->getSitemap()
                 ->writeToDisk(config('filesystems.default'), 'sitemap.xml');
         })->onQueue('low');
