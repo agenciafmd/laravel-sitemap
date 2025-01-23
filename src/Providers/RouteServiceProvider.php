@@ -16,7 +16,7 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->routes(function () {
             Route::middleware('web')
-                ->group(__DIR__ . '/../routes/web.php');
+                ->group(__DIR__ . '/../../routes/web.php');
         });
     }
 
