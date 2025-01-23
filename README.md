@@ -7,7 +7,7 @@
 ## Instalação
 
 ```bash
-composer require agenciafmd/laravel-sitemap:dev-master
+composer require agenciafmd/laravel-sitemap:v8.x-dev
 ```
 
 ## Configuração
