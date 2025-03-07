@@ -6,20 +6,19 @@ use Illuminate\Support\ServiceProvider;
 
 class SitemapServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
-        $this->providers();
+        $this->bootProviders();
     }
 
-    public function register()
+    public function register(): void
     {
-      //
+        //
     }
 
-    protected function providers()
+    private function bootProviders(): void
     {
         $this->app->register(CommandServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
     }
-
 }

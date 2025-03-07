@@ -11,18 +11,19 @@ class GenerateSitemap extends Command
 
     protected $description = 'Generate the sitemap';
 
-    public function handle()
+    public function handle(): void
     {
-        dispatch(function () {
+        dispatch(static function () {
             SitemapGenerator::create(config('app.url'))
-                ->shouldCrawl(function($url){
-                    if($url->getPath() === ''){
+                ->shouldCrawl(function ($url) {
+                    if ($url->getPath() === '') {
                         return false;
                     }
 
-                    if($url->getQuery()){
+                    if ($url->getQuery()) {
                         return false;
                     }
+
                     return true;
                 })
                 ->getSitemap()
