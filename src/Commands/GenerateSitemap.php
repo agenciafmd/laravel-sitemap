@@ -27,7 +27,7 @@ class GenerateSitemap extends Command
                     return true;
                 })
                 ->getSitemap()
-                ->writeToDisk(config('filesystems.default'), 'sitemap.xml');
+                ->writeToDisk(config('filesystems.default'), 'sitemap.xml', true);
         })->onQueue('low');
     }
 }
