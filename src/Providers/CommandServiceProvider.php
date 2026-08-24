@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Agenciafmd\Sitemap\Providers;
 
 use Agenciafmd\Sitemap\Commands\GenerateSitemap;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\ServiceProvider;
 
-class CommandServiceProvider extends ServiceProvider
+final class CommandServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        if (!$this->app->runningInConsole()) {
+        if (! $this->app->runningInConsole()) {
             return;
         }
 
