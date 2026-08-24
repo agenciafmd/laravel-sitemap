@@ -22,7 +22,7 @@ final class GenerateSitemap extends Command
                         return false;
                     }
 
-                    if (str_contains($url, '?')) {
+                    if (str_contains($url, '?') && (! str_contains($url, 'page='))) {
                         return false;
                     }
 
