@@ -18,11 +18,11 @@ final class GenerateSitemap extends Command
         dispatch(static function () {
             SitemapGenerator::create(config('app.url'))
                 ->shouldCrawl(function ($url) {
-                    if ($url->getPath() === '') {
+                    if ($url === '') {
                         return false;
                     }
 
-                    if ($url->getQuery()) {
+                    if (str_contains($url, '?')) {
                         return false;
                     }
 
