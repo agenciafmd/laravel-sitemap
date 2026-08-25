@@ -17,17 +17,21 @@ final class GenerateSitemap extends Command
     {
         dispatch(static function () {
             SitemapGenerator::create(config('app.url'))
-                ->shouldCrawl(function ($url) {
+                ->shouldCrawl(function (string $url) {
                     if ($url === '') {
-                        return false;
-                    }
-
-                    if (str_contains($url, '?') && (! str_contains($url, 'page='))) {
                         return false;
                     }
 
                     return true;
                 })
+                ->hasCrawled(function (Url $url) {
+                    if ($url->getQuery()) {
+                        return false;
+                    }
+
+                    return $url;
+                })
+                ->sort()
                 ->getSitemap()
                 ->writeToDisk(config('filesystems.default'), 'sitemap.xml', true);
         })->onQueue('low');
