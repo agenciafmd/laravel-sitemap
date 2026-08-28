@@ -6,6 +6,7 @@ namespace Agenciafmd\Sitemap\Commands;
 
 use Illuminate\Console\Command;
 use Spatie\Sitemap\SitemapGenerator;
+use Spatie\Sitemap\Tags\Url;
 
 final class GenerateSitemap extends Command
 {
@@ -18,21 +19,17 @@ final class GenerateSitemap extends Command
         dispatch(static function () {
             SitemapGenerator::create(config('app.url'))
                 ->shouldCrawl(function (string $url) {
-                    if ($url === '') {
-                        return false;
-                    }
-
-                    return true;
+                    return $url !== '';
                 })
                 ->hasCrawled(function (Url $url) {
-                    if ($url->getQuery()) {
+                    if (str_contains($url->url, '?')) {
                         return false;
                     }
 
                     return $url;
                 })
-                ->sort()
                 ->getSitemap()
+                ->sort()
                 ->writeToDisk(config('filesystems.default'), 'sitemap.xml', true);
         })->onQueue('low');
     }
