@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
-Route::redirect('/sitemap.xml', Storage::url('sitemap.xml'), 301);
+Route::permanentRedirect('/sitemap.xml', Storage::url('sitemap.xml'));
