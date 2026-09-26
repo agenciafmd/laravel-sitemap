@@ -17,7 +17,7 @@ final class GenerateSitemap extends Command
     public function handle(): void
     {
         dispatch(static function (): void {
-            SitemapGenerator::create(config('app.url'))
+            SitemapGenerator::create(config()->string('app.url'))
                 ->shouldCrawl(fn (string $url): bool => $url !== '')
                 ->hasCrawled(function (Url $url): false|Url {
                     if (str_contains($url->url, '?')) {
@@ -28,7 +28,7 @@ final class GenerateSitemap extends Command
                 })
                 ->getSitemap()
                 ->sort()
-                ->writeToDisk(config('filesystems.default'), 'sitemap.xml', true);
+                ->writeToDisk(config()->string('filesystems.default'), 'sitemap.xml', true);
         })->onQueue('low');
     }
 }
