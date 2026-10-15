@@ -11,7 +11,7 @@ use Tests\TestCase;
 
 use function Pest\Laravel\artisan;
 
-uses(TestCase::class, RefreshDatabase::class);
+pest()->extend(TestCase::class)->use(RefreshDatabase::class);
 
 it('queues the sitemap generation on the low queue', function (): void {
     Queue::fake([CallQueuedClosure::class]);
